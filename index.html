@@ -9,6 +9,12 @@
 <body>
   <div class="container">
     <h1>Bảng kê tiền</h1>
+    <div class="info">
+      <label for="name">Tên: </label>
+      <input type="text" id="name" placeholder="Nhập tên...">
+      <label for="date">Ngày: </label>
+      <input type="date" id="date">
+    </div>
     <table>
       <thead>
         <tr>
@@ -22,6 +28,12 @@
       </tbody>
     </table>
     <p><strong>Tổng tiền: </strong><span id="total-money">0</span> VND</p>
+    <p><strong>Số tiền bằng chữ: </strong><span id="money-text">Không</span></p>
+    <div class="report">
+      <label for="report-amount">Số tiền báo cáo: </label>
+      <input type="number" id="report-amount" placeholder="Nhập số tiền báo cáo...">
+      <p><strong>Chênh lệch: </strong><span id="difference">0</span> VND</p>
+    </div>
   </div>
   <script src="script.js"></script>
 </body>
