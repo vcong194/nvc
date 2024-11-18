@@ -6,8 +6,8 @@ body {
   background-color: #f4f4f4;
 }
 
-.container {
-  margin-top: 50px;
+.container, .hidden {
+  margin-top: 20px;
 }
 
 button {
@@ -17,6 +17,7 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin: 10px;
 }
 
 button:hover {
@@ -25,4 +26,20 @@ button:hover {
 
 .hidden {
   display: none;
+}
+
+table {
+  margin: 20px auto;
+  border-collapse: collapse;
+  width: 80%;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+strong {
+  font-size: 1.2em;
 }
