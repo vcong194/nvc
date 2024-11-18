@@ -3,18 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Bảng Kê Tiền</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
-    <div id="greeting"></div>
-    <div>
-        <button onclick="showTrangTinh()">Trang tính</button>
-        <button onclick="showLuuTru()">Lưu trữ dữ liệu</button>
-    </div>
+    <h1>Bảng Kê Tiền</h1>
+    <h2>Bảng kê tiền mặt</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Loại tiền</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>500,000</td>
+                <td>10</td>
+                <td>5,000,000</td>
+            </tr>
+            <tr>
+                <td>1,000,000</td>
+                <td>5</td>
+                <td>5,000,000</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="2">Tổng tiền</th>
+                <th>10,000,000</th>
+            </tr>
+        </tfoot>
+    </table>
 
-    <div id="main-content"></div>
+    <h2>Bảng kê QR</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Diễn giải</th>
+                <th>Số tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>QR code 1</td>
+                <td>1,000,000</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>QR code 2</td>
+                <td>2,000,000</td>
+            </tr>
+        </tbody>
+    </table>
 
-    <script src="script.js"></script>
+    <h2>Bảng kê POS</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Diễn giải</th>
+                <th>Số tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>POS 1</td>
+                <td>500,000</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>POS 2</td>
+                <td>700,000</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Bảng kê CK</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Diễn giải</th>
+                <th>Số tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Chuyển khoản 1</td>
+                <td>3,000,000</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Chuyển khoản 2</td>
+                <td>1,500,000</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
