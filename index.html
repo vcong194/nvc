@@ -3,67 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trang Báo Cáo Làm Việc</title>
+  <title>Trang Báo Cáo</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div id="menu-lam-viec">
-    <h2>Menu Làm Việc</h2>
-    <form id="report-form">
-      <label for="ten">Tên:</label>
-      <input type="text" id="ten" name="ten"><br><br>
-
-      <label for="ngay-lam-viec">Ngày làm việc:</label>
-      <input type="date" id="ngay-lam-viec" name="ngay-lam-viec"><br><br>
-
-      <div>
-        <h3>Số tiền báo cáo</h3>
-        <label for="tong-pos">Số tiền POS:</label>
-        <input type="number" id="tong-pos" name="tong-pos"><br><br>
-
-        <label for="tong-qr">Số tiền QR:</label>
-        <input type="number" id="tong-qr" name="tong-qr"><br><br>
-
-        <label for="tong-chuyen-khoan">Số tiền chuyển khoản:</label>
-        <input type="number" id="tong-chuyen-khoan" name="tong-chuyen-khoan"><br><br>
-
-        <label for="thuc-nop">Thực nộp:</label>
-        <input type="number" id="thuc-nop" name="thuc-nop" readonly><br><br>
-      </div>
-
-      <div>
-        <h3>Bảng kê tiền</h3>
-        <!-- Địa chỉ tiền (input cho số tiền) -->
-        <table id="bang-ke-tien">
-          <tr>
-            <th>Loại tiền</th>
-            <th>Số lượng</th>
-            <th>Thành tiền</th>
-          </tr>
-          <tr>
-            <td>500,000</td>
-            <td><input type="number" class="so-luong" data-loai="500000"></td>
-            <td><span class="thanh-tien">0</span></td>
-          </tr>
-          <tr>
-            <td>200,000</td>
-            <td><input type="number" class="so-luong" data-loai="200000"></td>
-            <td><span class="thanh-tien">0</span></td>
-          </tr>
-          <!-- Các dòng tiếp theo cho các loại tiền khác -->
-        </table>
-      </div>
-
-      <div>
-        <button type="button" id="save-report">Lưu báo cáo PDF</button>
-      </div>
-    </form>
+  <!-- Tiêu đề chào buổi sáng/chiều/tối -->
+  <div id="greeting">
+    <h1>Chào buổi sáng!</h1>
   </div>
 
-  <div id="menu-luu-tru">
-    <h2>Menu Lưu Trữ</h2>
-    <div id="pdf-list"></div>
+  <!-- Menu -->
+  <div class="menu-container">
+    <nav>
+      <ul>
+        <li><a href="#" id="menu-lam-viec-link">Menu Làm Việc</a></li>
+        <li><a href="#" id="menu-luu-tru-link">Menu Lưu Trữ</a></li>
+      </ul>
+    </nav>
+    
+    <div id="menu-lam-viec" class="menu-content">
+      <h2>Menu Làm Việc</h2>
+      <p>Chọn các mục ở đây để làm việc.</p>
+    </div>
+
+    <div id="menu-luu-tru" class="menu-content">
+      <h2>Menu Lưu Trữ</h2>
+      <p>Xem lại các báo cáo đã lưu ở đây.</p>
+    </div>
   </div>
 
   <script src="script.js"></script>
