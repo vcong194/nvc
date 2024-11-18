@@ -1,45 +1,38 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  background-color: #f4f4f4;
-}
+document.addEventListener("DOMContentLoaded", () => {
+  const menuButtons = {
+    "menu-money": "form-money",
+    "menu-pos": "form-payment",
+    "menu-qr": "form-payment",
+    "menu-bank": "form-payment",
+  };
 
-.container, .hidden {
-  margin-top: 20px;
-}
+  const menuContainer = document.querySelector(".container"); // Menu chính
+  const forms = document.querySelectorAll(".hidden"); // Tất cả các form bị ẩn
 
-button {
-  background-color: #007BFF;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 10px;
-}
+  // Khi nhấn nút menu
+  Object.keys(menuButtons).forEach((btnId) => {
+    const button = document.getElementById(btnId);
+    button.addEventListener("click", () => {
+      menuContainer.classList.add("hidden"); // Ẩn menu chính
+      const formId = menuButtons[btnId];
+      document.getElementById(formId).classList.remove("hidden"); // Hiển thị form tương ứng
 
-button:hover {
-  background-color: #0056b3;
-}
+      if (formId === "form-payment") {
+        const titles = {
+          "menu-pos": "Nhập thanh toán POS",
+          "menu-qr": "Nhập thanh toán QR",
+          "menu-bank": "Nhập thanh toán chuyển khoản bệnh viện",
+        };
+        document.getElementById("payment-title").innerText = titles[btnId]; // Đặt tiêu đề phù hợp
+      }
+    });
+  });
 
-.hidden {
-  display: none;
-}
-
-table {
-  margin: 20px auto;
-  border-collapse: collapse;
-  width: 80%;
-}
-
-table th, table td {
-  border: 1px solid #ccc;
-  padding: 10px;
-  text-align: center;
-}
-
-strong {
-  font-size: 1.2em;
-}
+  // Khi nhấn nút "Quay lại"
+  document.querySelectorAll("[id^='back']").forEach((backBtn) => {
+    backBtn.addEventListener("click", () => {
+      forms.forEach((form) => form.classList.add("hidden")); // Ẩn tất cả form
+      menuContainer.classList.remove("hidden"); // Hiển thị menu chính
+    });
+  });
+});
