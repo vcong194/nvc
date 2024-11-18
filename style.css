@@ -1,34 +1,54 @@
-document.addEventListener('DOMContentLoaded', function () {
-  // Xử lý phần chào
-  const greetingElement = document.getElementById('greeting').querySelector('h1');
-  const currentHour = new Date().getHours(); // Lấy giờ hiện tại
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
 
-  if (currentHour < 12) {
-    greetingElement.textContent = "Chào buổi sáng!";
-  } else if (currentHour < 18) {
-    greetingElement.textContent = "Chào buổi chiều!";
-  } else {
-    greetingElement.textContent = "Chào buổi tối!";
-  }
+#greeting {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 2em;
+  color: #333;
+}
 
-  // Các phần tử menu
-  const menuLamViec = document.getElementById('menu-lam-viec');
-  const menuLuuTru = document.getElementById('menu-luu-tru');
-  const menuLamViecLink = document.getElementById('menu-lam-viec-link');
-  const menuLuuTruLink = document.getElementById('menu-luu-tru-link');
+.menu-container {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 20px;
+}
 
-  // Hàm hiển thị menu làm việc
-  menuLamViecLink.addEventListener('click', function () {
-    menuLamViec.classList.add('active');
-    menuLuuTru.classList.remove('active');
-  });
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  background-color: #4CAF50; /* Màu xanh lá */
+  padding: 10px 0;
+}
 
-  // Hàm hiển thị menu lưu trữ
-  menuLuuTruLink.addEventListener('click', function () {
-    menuLuuTru.classList.add('active');
-    menuLamViec.classList.remove('active');
-  });
+nav ul li {
+  display: inline;
+}
 
-  // Mặc định hiển thị Menu làm việc
-  menuLamViec.classList.add('active');
-});
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-size: 1.2em;
+}
+
+nav ul li a:hover {
+  background-color: #45a049; /* Màu xanh lá đậm hơn khi hover */
+}
+
+.menu-content {
+  display: none;
+  padding: 20px;
+  background-color: white;
+  margin-top: 20px;
+  border-radius: 8px;
+}
+
+.menu-content.active {
+  display: block;
+}
