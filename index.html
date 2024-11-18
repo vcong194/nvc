@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bảng Kê Tiền</title>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -44,12 +45,31 @@
             text-align: center;
             border: 1px solid #ccc;
         }
+        .save-button-container {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        button {
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Bảng Kê Tiền</h1>
-        <table>
+        <table id="bang-ke-tien">
             <thead>
                 <tr>
                     <th>Loại tiền</th>
@@ -80,7 +100,7 @@
 
     <div class="container">
         <h1>Bảng Kê QR</h1>
-        <table>
+        <table id="bang-ke-qr">
             <thead>
                 <tr>
                     <th>STT</th>
@@ -103,62 +123,44 @@
         </table>
     </div>
 
-    <div class="container">
-        <h1>Bảng Kê POS</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>STT</th>
-                    <th>Diễn giải</th>
-                    <th>Số tiền</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td><input type="text" placeholder="Diễn giải"></td>
-                    <td><input type="number" class="pos-amount" value="0"></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td><input type="text" placeholder="Diễn giải"></td>
-                    <td><input type="number" class="pos-amount" value="0"></td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="save-button-container">
+        <button id="save-button">Lưu thành Excel</button>
     </div>
-</body>
-<script>
-    // Tính toán tự động cho bảng kê tiền
-    const quantities = document.querySelectorAll(".quantity");
-    const grandTotal = document.getElementById("grand-total");
 
-    function updateTotals() {
-        let totalSum = 0;
-        quantities.forEach((input) => {
-            const value = parseInt(input.dataset.value);
-            const quantity = parseInt(input.value) || 0;
-            const total = value * quantity;
-            input.parentElement.nextElementSibling.querySelector(".total").textContent = total.toLocaleString();
-            totalSum += total;
-        });
-        grandTotal.textContent = totalSum.toLocaleString();
-    }
+    <script>
+        // Tính toán tự động cho bảng kê tiền
+        const quantities = document.querySelectorAll(".quantity");
+        const grandTotal = document.getElementById("grand-total");
 
-    quantities.forEach((input) => {
-        input.addEventListener("input", updateTotals);
-    });
-
-    // Tính toán số tiền ở các bảng kê khác (QR, POS)
-    const qrAmounts = document.querySelectorAll(".qr-amount");
-    const posAmounts = document.querySelectorAll(".pos-amount");
-
-    [qrAmounts, posAmounts].forEach((amounts) => {
-        amounts.forEach((input) => {
-            input.addEventListener("input", () => {
-                input.value = parseInt(input.value) || 0; // Đảm bảo giá trị nhập là số
+        function updateTotals() {
+            let totalSum = 0;
+            quantities.forEach((input) => {
+                const value = parseInt(input.dataset.value);
+                const quantity = parseInt(input.value) || 0;
+                const total = value * quantity;
+                input.parentElement.nextElementSibling.querySelector(".total").textContent = total.toLocaleString();
+                totalSum += total;
             });
+            grandTotal.textContent = totalSum.toLocaleString();
+        }
+
+        quantities.forEach((input) => {
+            input.addEventListener("input", updateTotals);
         });
-    });
-</script>
+
+        // Lưu thành file Excel
+        document.getElementById("save-button").addEventListener("click", () => {
+            const tables = document.querySelectorAll("table");
+            const workbook = XLSX.utils.book_new();
+
+            tables.forEach((table, index) => {
+                const worksheet = XLSX.utils.table_to_sheet(table);
+                XLSX.utils.book_append_sheet(workbook, worksheet, `Bảng kê ${index + 1}`);
+            });
+
+            // Xuất file Excel với tính năng lưu đường dẫn
+            XLSX.writeFile(workbook, "bang_ke_tien.xlsx");
+        });
+    </script>
+</body>
 </html>
