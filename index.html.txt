@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bảng kê tiền</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Chọn hành động</h1>
+    <button id="input-money-btn">Nhập bảng kê tiền</button>
+  </div>
+
+  <!-- Div hiện form nhập bảng kê -->
+  <div id="form-container" class="hidden">
+    <h2>Nhập bảng kê tiền</h2>
+    <form id="money-form">
+      <label for="denomination">Mệnh giá:</label>
+      <input type="number" id="denomination" name="denomination" placeholder="Nhập mệnh giá" required>
+      <label for="quantity">Số lượng:</label>
+      <input type="number" id="quantity" name="quantity" placeholder="Nhập số lượng" required>
+      <button type="submit">Thêm</button>
+    </form>
+    <button id="back-btn">Quay lại</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
