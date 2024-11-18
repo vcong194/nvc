@@ -1,49 +1,54 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const form = document.getElementById('report-form');
-  const saveButton = document.getElementById('save-report');
-  const thucNopInput = document.getElementById('thuc-nop');
-  
-  // Tính toán thực nộp
-  form.addEventListener('input', function () {
-    const tongPos = parseFloat(document.getElementById('tong-pos').value) || 0;
-    const tongQr = parseFloat(document.getElementById('tong-qr').value) || 0;
-    const tongChuyenKhoan = parseFloat(document.getElementById('tong-chuyen-khoan').value) || 0;
-    const soTienBaoCao = tongPos + tongQr + tongChuyenKhoan;
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
 
-    thucNopInput.value = soTienBaoCao.toFixed(2);
-  });
+#greeting {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 2em;
+  color: #333;
+}
 
-  // Tính thành tiền cho bảng kê tiền
-  const moneyInputs = document.querySelectorAll('.so-luong');
-  moneyInputs.forEach(input => {
-    input.addEventListener('input', function () {
-      const soLuong = parseFloat(input.value) || 0;
-      const loaiTien = parseFloat(input.dataset.loai);
-      const thanhTien = soLuong * loaiTien;
-      input.parentElement.nextElementSibling.querySelector('.thanh-tien').textContent = thanhTien.toFixed(2);
-    });
-  });
+.menu-container {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 20px;
+}
 
-  // Lưu báo cáo dưới dạng PDF
-  saveButton.addEventListener('click', function () {
-    const doc = new jsPDF();
-    doc.text("Báo cáo làm việc", 20, 20);
-    
-    // Thêm thông tin từ form
-    doc.text(`Tên: ${document.getElementById('ten').value}`, 20, 30);
-    doc.text(`Ngày làm việc: ${document.getElementById('ngay-lam-viec').value}`, 20, 40);
-    
-    // Tạo bảng kê tiền
-    let yOffset = 50;
-    document.querySelectorAll('.so-luong').forEach(input => {
-      const soLuong = input.value;
-      const loaiTien = input.dataset.loai;
-      const thanhTien = input.parentElement.nextElementSibling.querySelector('.thanh-tien').textContent;
-      doc.text(`Loại tiền: ${loaiTien} - Số lượng: ${soLuong} - Thành tiền: ${thanhTien}`, 20, yOffset);
-      yOffset += 10;
-    });
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  background-color: #4CAF50; /* Màu xanh lá */
+  padding: 10px 0;
+}
 
-    // Lưu file PDF
-    doc.save('bao-cao-lam-viec.pdf');
-  });
-});
+nav ul li {
+  display: inline;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-size: 1.2em;
+}
+
+nav ul li a:hover {
+  background-color: #45a049; /* Màu xanh lá đậm hơn khi hover */
+}
+
+.menu-content {
+  display: none;
+  padding: 20px;
+  background-color: white;
+  margin-top: 20px;
+  border-radius: 8px;
+}
+
+.menu-content.active {
+  display: block;
+}
