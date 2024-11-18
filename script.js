@@ -38,3 +38,16 @@ function updateStorageList() {
 
 // Cập nhật danh sách lưu trữ khi tải trang
 updateStorageList();
+
+// Tạo file Excel từ dữ liệu trong localStorage
+document.getElementById("downloadBtn").addEventListener("click", function() {
+    const storedData = JSON.parse(localStorage.getItem("data")) || [];
+
+    // Chuyển đổi dữ liệu thành bảng Excel
+    const ws = XLSX.utils.json_to_sheet(storedData);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Bảng Kê Tiền");
+
+    // Tải xuống file Excel
+    XLSX.writeFile(wb, "BangKeTien.xlsx");
+});
